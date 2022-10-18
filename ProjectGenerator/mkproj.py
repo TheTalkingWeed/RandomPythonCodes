@@ -78,6 +78,7 @@ def handle_arguments(arg):
 
     if arg[1] == "-help":
         print("mkproj [your project name] [programming language]")
+        print("Languages: java,py,c,cpp,cs,js(write them like this)")
         sys.exit()
 
     if len(arg)-1 == 1 :
