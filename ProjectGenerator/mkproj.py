@@ -9,15 +9,16 @@ def check_lanuage(lang):
     lang_list = ["java","py","c","cpp","cs","js"]
 
     return lang in lang_list
+
 def write_file(filename,content):
     with open(filename,"w") as f:
         f.write(content)
         f.close()
 
-def get_hello_world(lang):
+def get_hello_world(filename,lang):
 
     if lang == "java":
-        return ("class HelloWorld {\n "
+        return ("class "+filename+" {\n "
                 "\tpublic static void main(String[] args) {\n"
                 "\t\tSystem.out.println(\"Hello, World!\");\n"
                 "\t}\n"
@@ -44,9 +45,9 @@ def get_hello_world(lang):
                 "}")
 
     if lang == "cs":
-        return ("namespace Main\n"
+        return ("namespace "+filename+"\n"
                 "{\n"
-                "\tclass Hello {\n"
+                "\tclass "+filename+" {\n"
                 "\t\tstatic void Main(string[] args)\n"
                 "\t\t{\n"
                 "\t\t\tSystem.Console.WriteLine(\"Hello World!\");\n"
@@ -58,8 +59,11 @@ def get_hello_world(lang):
         return "console.log(\"Hello world!\")"
 
 def create_source_code(lang,path):
-    file_name = "Main." + lang
-    write_file(path +"/" + file_name,get_hello_world(lang))
+    class_name = input("Please type the name for your main file: ");
+    file_name =class_name +"." + lang
+    write_file(path +"/" + file_name,get_hello_world(class_name,lang))
+
+
 def create_proj(name,lang):
 
     if check_dir(name):
