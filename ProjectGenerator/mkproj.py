@@ -2,8 +2,8 @@ import os
 import sys
 
 def check_dir(dir_name):
-    sub_dirs = [x[0] for x in os.walk("./")]
-    return "./"+dir_name in sub_dirs
+    sub_dirs =[name for name in os.listdir("./") if os.path.isdir(os.path.join("./", name))]
+    return dir_name in sub_dirs
 
 def check_lanuage(lang):
     lang_list = ["java","py","c","cpp","cs","js","html"]
