@@ -6,7 +6,7 @@ def check_dir(dir_name):
     return "./"+dir_name in sub_dirs
 
 def check_lanuage(lang):
-    lang_list = ["java","py","c","cpp","cs","js"]
+    lang_list = ["java","py","c","cpp","cs","js","html"]
 
     return lang in lang_list
 
@@ -57,11 +57,46 @@ def get_hello_world(filename,lang):
 
     if lang == "js":
         return "console.log(\"Hello world!\")"
+    if lang == "html":
+        return ("<!DOCTYPE html>\n"
+                "<html lang=\"en\">\n"
+                "<head>\n"
+                "\t<meta charset=\"UTF-8\">\n"
+                "\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+                "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                "\t<link rel=\"stylesheet\" href=\""+filename+".css\">\n"
+                "<title>"+filename+"</title>\n"
+                "</head>\n"
+                "<body>\n"
+                "\t<div class=\"container\">\n"
+                "\t\t<h2>Hello World!</h2>\n"
+                "\t</div>\n"
+                "</body>\n"
+                "</html>\n")
+    if lang == "css":
+        return(".container{\n"
+               "\tdisplay: flex;\n"
+               "\tjustify-content: center;\n"
+               "\talign-items: center;\n"
+               "\twidth: 30%;\n"
+               "\tmargin: auto;\n"
+               "}\n\n"
+               "h2{\n"
+               "\tfont-family: 'Courier New', Courier, monospace;\n"
+               "}\n"
+        )
+
 
 def create_source_code(lang,path):
     class_name = input("Please type the name for your main file: ");
     file_name =class_name +"." + lang
     write_file(path +"/" + file_name,get_hello_world(class_name,lang))
+    if lang == "html":
+        need_css = input("Do you want a css file?(y/n)")
+
+        if need_css.lower() == "y":
+            file_name = class_name + ".css"
+            write_file(path +"/" + file_name,get_hello_world(class_name,"css"))
 
 
 def create_proj(name,lang):
@@ -82,7 +117,7 @@ def handle_arguments(arg):
 
     if arg[1] == "-help":
         print("mkproj [your project name] [programming language]")
-        print("Languages: java,py,c,cpp,cs,js(write them like this)")
+        print("Languages: java,py,c,cpp,cs,js,html(write them like this)")
         sys.exit()
 
     if len(arg)-1 == 1 :
