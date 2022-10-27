@@ -97,7 +97,7 @@ def get_hello_world(filename,lang):
 
 def create_source_code(lang,path,class_name):
     file_name =class_name +"." + lang
-    
+
     if check_file(file_name):
         need_frewrite = input("File already exists do you want to rewrite it? (y/n)")
         if need_frewrite.lower() == "y":
@@ -156,6 +156,7 @@ def handle_arguments(arg):
         print("-sl\t - List the supported languages")
         print("-cr\t - Create a new project (mkproj -cr [your project name] [programming language])")
         print("-crf\t - Create a new file (mkproj -crf [your file name] [programming language])")
+        print("-v\t - Version")
         sys.exit()
 
     if arg[1] == "-sl":
@@ -187,6 +188,11 @@ def handle_arguments(arg):
             else: print("There is no language named: ",arg[3])
         else:
             print("Missing command line arguments use -help")
+        sys.exit()
+
+    if arg[1] == "-v":
+        print("Mkproj version 0.4.1")
+
         sys.exit()
 
 
