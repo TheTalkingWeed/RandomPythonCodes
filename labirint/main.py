@@ -29,9 +29,12 @@ def print_lab(labirint):
         print()
 
 def to_int_array(array):
-    output = [[0 for i in range(len(array))] for j in range(len(array))]
+    print(len(array))
+    print(len(array[0]))
+    output = [[ 0 for i in range(len(array)) ] for j in range(len(array[0]))]
+    print_lab(output)
     for i in range(len(array)):
-        for j in range(len(array)):
+        for j in range(len(array[0])):
             output[i][j] = int(array[i][j])
 
 
